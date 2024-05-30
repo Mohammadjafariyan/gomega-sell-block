@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gomega-sell-block/gomega-sell-block",
+  "version": "0.1.0",
+  "title": "Gomega sell block ",
+  "category": "design",
+  "icon": "smiley",
+  "description": "Gomega sell block ",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "rows": {
+      "type": "number",
+      "default": 2
+    },
+    "cols": {
+      "type": "number",
+      "default": 2
+    },
+    "colsArr": {
+      "type": "array",
+      "default": []
+    },
+    "rowsArr": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "textdomain": "gomega-sell-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:../build-assets/index.css",
+    "file:./style-index.css"
+  ],
+  "viewScript": "file:./view.js"
+}
