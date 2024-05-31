@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps ,RichText} from '@wordpress/block-editor';
+import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -15,34 +15,45 @@ import { useBlockProps ,RichText} from '@wordpress/block-editor';
  *
  * @return {Element} Element to render.
  */
-export default function save({attributes}) {
-	const { rowsArr,colsArr} = attributes;
+export default function save({ attributes }) {
+	const { rowsArr, colsArr } = attributes;
 	return (
-		<div { ...useBlockProps.save() }>
-			<div className='relative overflow-x-auto' dir={'rtl'}>
-				<table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-					<thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
-					<tr>
-						{colsArr &&  colsArr.map((col, colIndex) => (
-							<th key={colIndex} scope='col' className='px-6 py-3'>
-								<RichText.Content tagName='p' value={col} />
-							</th>
-						))}					</tr>
+		<div {...useBlockProps.save()}>
+			<div className="relative overflow-x-auto" dir={"rtl"}>
+				<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+					<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+						<tr>
+							{colsArr &&
+								colsArr.map((col, colIndex) => (
+									<th key={colIndex} scope="col" className="px-6 py-3">
+										<RichText.Content tagName="p" value={col} />
+									</th>
+								))}{" "}
+						</tr>
 					</thead>
 					<tbody>
-					{rowsArr && rowsArr.map((row, rowIndex) => (
-						<tr key={rowIndex} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
-							{row.map((col, colIndex) => (
-								<td key={colIndex} className='px-6 py-4'>
-									<RichText.Content tagName='p' value={col} />
-								</td>
+
+
+						{rowsArr &&
+							rowsArr.map((row, rowIndex) => (
+								<tr
+									key={rowIndex}
+									className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+								>
+									{row.map((col, colIndex) =>
+										colIndex >= colsArr.length ? (
+											<></>
+										) : (
+											<td key={colIndex} className="px-6 py-4">
+												<RichText.Content tagName="p" value={col} />
+											</td>
+										),
+									)}
+								</tr>
 							))}
-						</tr>
-					))}
 					</tbody>
 				</table>
 			</div>
 		</div>
-
 	);
 }
