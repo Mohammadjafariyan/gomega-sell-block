@@ -26,7 +26,13 @@
     },
     "rowsArr": {
       "type": "array",
-      "default": []
+      "default": [
+        {
+          "name": "",
+          "url": "",
+          "type": ""
+        }
+      ]
     }
   },
   "textdomain": "gomega-sell-block",

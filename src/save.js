@@ -32,8 +32,6 @@ export default function save({ attributes }) {
 						</tr>
 					</thead>
 					<tbody>
-
-
 						{rowsArr &&
 							rowsArr.map((row, rowIndex) => (
 								<tr
@@ -45,7 +43,15 @@ export default function save({ attributes }) {
 											<></>
 										) : (
 											<td key={colIndex} className="px-6 py-4">
-												<RichText.Content tagName="p" value={col} />
+												{!col.type ||
+													(col.type == "text" && (
+														<RichText.Content tagName="p" value={col.text} />
+													))}
+												{col.type && col.type == "button" && (
+													<button class="button button-primary">
+														{col.text}
+													</button>
+												)}
 											</td>
 										),
 									)}
