@@ -43,14 +43,18 @@ export default function save({ attributes }) {
 											<></>
 										) : (
 											<td key={colIndex} className="px-6 py-4">
-												{!col.type || colIndex==0 ||
+												{!col.type ||
 													(col.type == "text" && (
 														<RichText.Content tagName="p" value={col.text} />
 													))}
-												{col.type && colIndex!=0 && col.type == "button" && (
+												{col.type && colIndex != 0 && col.type == "button" && (
 													<button class="button button-primary">
 														{col.text}
 													</button>
+												)}
+
+												{col.type && colIndex == 0 && col.type == "button" && (
+													<RichText.Content tagName="p" value={col.text} />
 												)}
 											</td>
 										),
