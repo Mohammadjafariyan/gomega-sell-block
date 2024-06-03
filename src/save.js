@@ -27,6 +27,7 @@ export default function save({ attributes }) {
 								colsArr.map((col, colIndex) => (
 									<th key={colIndex} scope="col" className="px-6 py-3">
 										<RichText.Content tagName="p" value={col} />
+
 									</th>
 								))}{" "}
 						</tr>
@@ -61,6 +62,14 @@ export default function save({ attributes }) {
 									)}
 								</tr>
 							))}
+
+
+						<select >
+							<option><a>چهار هفته رایگان</a></option>
+							<option><a>اشتراک یک ماهه</a></option>
+							<option><a>اشتراک سه ماهه</a></option>
+							<option><a>اشتراک یکساله</a></option>
+						</select>
 					</tbody>
 				</table>
 			</div>

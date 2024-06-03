@@ -336,8 +336,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _build_assets_index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../build-assets/index.css */ "./build-assets/index.css");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -359,7 +358,7 @@ __webpack_require__.r(__webpack_exports__);
  * Internal dependencies
  */
 
-
+//import save from './save';
 
 
 /**
@@ -367,90 +366,17 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"]
+
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
+  //save,
 });
-
-/***/ }),
-
-/***/ "./src/save.js":
-/*!*********************!*\
-  !*** ./src/save.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ save)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-
-
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @return {Element} Element to render.
- */
-function save({
-  attributes
-}) {
-  const {
-    rowsArr,
-    colsArr
-  } = attributes;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "relative overflow-x-auto",
-    dir: "rtl"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("table", {
-    className: "w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("thead", {
-    className: "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, colsArr && colsArr.map((col, colIndex) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("th", {
-    key: colIndex,
-    scope: "col",
-    className: "px-6 py-3"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
-    tagName: "p",
-    value: col
-  }))), " ")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rowsArr && rowsArr.map((row, rowIndex) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", {
-    key: rowIndex,
-    className: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-  }, row.map((col, colIndex) => colIndex >= colsArr.length ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
-    key: colIndex,
-    className: "px-6 py-4"
-  }, !col.type || col.type == "text" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
-    tagName: "p",
-    value: col.text
-  }), col.type && colIndex != 0 && col.type == "button" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    class: "button button-primary"
-  }, col.text), col.type && colIndex == 0 && col.type == "button" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
-    tagName: "p",
-    value: col.text
-  })))))))));
-}
 
 /***/ }),
 
@@ -556,7 +482,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"gomega-sell-block/gomega-sell-block","version":"0.1.0","title":"Gomega sell block ","category":"design","icon":"smiley","description":"Gomega sell block ","example":{},"supports":{"html":false},"attributes":{"rows":{"type":"number","default":2},"cols":{"type":"number","default":2},"colsArr":{"type":"array","default":[]},"rowsArr":{"type":"array","default":[{"name":"","url":"","type":""}]}},"textdomain":"gomega-sell-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":["file:../build-assets/index.css","file:./style-index.css"],"viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"gomega-sell-block/gomega-sell-block","version":"0.1.0","title":"Gomega sell block ","category":"design","icon":"smiley","description":"Gomega sell block ","example":{},"supports":{"html":false},"attributes":{"rows":{"type":"number","default":2},"cols":{"type":"number","default":2},"colsArr":{"type":"array","default":[]},"rowsArr":{"type":"array","default":[{"name":"","url":"","type":""}]}},"textdomain":"gomega-sell-block","render":"file:./render.php","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":["file:../build-assets/index.css","file:./style-index.css"],"viewScript":"file:./view.js"}');
 
 /***/ })
 

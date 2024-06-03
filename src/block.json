@@ -26,10 +26,11 @@
 		},
 		"rowsArr": {
 			"type": "array",
-			"default": [{"name":"","url":"" , "type":""}]
+			"default": [{ "name": "", "url": "", "type": "" }]
 		}
 	},
 	"textdomain": "gomega-sell-block",
+	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": ["file:../build-assets/index.css", "file:./style-index.css"],

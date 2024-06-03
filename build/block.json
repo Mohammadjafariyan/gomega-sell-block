@@ -36,6 +36,7 @@
     }
   },
   "textdomain": "gomega-sell-block",
+  "render": "file:./render.php",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": [
