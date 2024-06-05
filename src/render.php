@@ -10,12 +10,37 @@ $colsArr = isset($attributes['colsArr']) ? $attributes['colsArr'] : array();
 $rowsArr = isset($attributes['rowsArr']) ? $attributes['rowsArr'] : array();
 ?>
 
+<?php
+
+// Default arguments
+$args = array(
+	'status'            => array('draft', 'pending', 'private', 'publish'),
+	'type'              => array_merge(array_keys(wc_get_product_types())),
+	'parent'            => null,
+	'sku'               => '',
+	'category'          => array(),
+	'tag'               => array(),
+	'limit'             => get_option('posts_per_page'),  // -1 for unlimited
+	'offset'            => null,
+	'page'              => 1,
+	'include'           => array(),
+	'exclude'           => array(),
+	'orderby'           => 'date',
+	'order'             => 'DESC',
+	'return'            => 'objects',
+	'paginate'          => false,
+	'shipping_class'    => array(),
+);
+
+// Array of product objects
+$products = wc_get_products($args);
+?>
 
 <?php
 
 $colors = array(
 	'#f00a55',
-	'#f00aa1',
+	'#e9115e',
 	'#0aa5f0',
 	'#0af0d0',
 	'#720af0',
@@ -73,6 +98,7 @@ $colors = array(
 
 							<?php if ($colIndex >= count($colsArr)) { ?>
 
+
 							<?php } else { ?>
 
 								<td classs="px-6 py-4">
@@ -112,10 +138,13 @@ $colors = array(
 
 
 
+
+
 						<?php
 
 						}
 						?>
+
 
 					</tr>
 				<?php
@@ -123,57 +152,66 @@ $colors = array(
 				}
 				?>
 
+
 				<tr>
-					<td colspan="10">
 
-						<?php
+					<?php
 
-						// Default arguments
-						$args = array(
-							'status'            => array('draft', 'pending', 'private', 'publish'),
-							'type'              => array_merge(array_keys(wc_get_product_types())),
-							'parent'            => null,
-							'sku'               => '',
-							'category'          => array(),
-							'tag'               => array(),
-							'limit'             => get_option('posts_per_page'),  // -1 for unlimited
-							'offset'            => null,
-							'page'              => 1,
-							'include'           => array(),
-							'exclude'           => array(),
-							'orderby'           => 'date',
-							'order'             => 'DESC',
-							'return'            => 'objects',
-							'paginate'          => false,
-							'shipping_class'    => array(),
-						);
+					//echo print_r($rowsArr);
 
-						// Array of product objects
-						$products = wc_get_products($args);
-						?>
+					if (count($rowsArr) > 0)
+						for ($colIndex = 0; $colIndex < 3; $colIndex++) {
+							$col = $row[$colIndex];
 
-						<select id="planselect">
-							<?php
+					?>
 
-							foreach ($products as $product) {
-							?>
-								<option value="<?php echo $product->get_id(); ?>">
-									<?php echo $product->get_name(); ?>
-									<?php if ($product->get_price() == 0) {
-										echo 'رایگان';
-									} else {
-										echo number_format($product->get_price()) . ' تومان ';
-									}
+						<?php if ($colIndex >= count($colsArr)) { ?>
+
+
+						<?php } else if ($colIndex == 0) { ?>
+							<td></td>
+						<?php } else { ?>
+							<td>
+
+								<select id="planselect<?php echo $colIndex ?>">
+									<?php
+
+									foreach ($products as $product) {
+
+										if ($colIndex == 1 && str_contains($product->get_name(), "GOLDMEGA")) {
 									?>
-								</option>
+											<option value="<?php echo $product->get_id(); ?>">
+												<?php echo $product->get_name(); ?>
+												<?php if ($product->get_price() == 0) {
+													echo 'رایگان';
+												} else {
+													echo number_format($product->get_price()) . ' تومان ';
+												}
+												?>
+											</option>
 
-							<?php } ?>
-						</select>
+										<?php
+										} else if ($colIndex == 2 && str_contains($product->get_name(), "EUROMEGA")) {
+										?>
+											<option value="<?php echo $product->get_id(); ?>">
+												<?php echo $product->get_name(); ?>
+												<?php if ($product->get_price() == 0) {
+													echo 'رایگان';
+												} else {
+													echo number_format($product->get_price()) . ' تومان ';
+												}
+												?>
+											</option>
 
-						<a style="display: none;" id="addtocart" href="" target="_blank"></a>
-						<button style="background-color: #720af0;" onclick="function addToCartButton(){
+									<?php
+										}
+									} ?>
+								</select>
 
-		let id = document.querySelector('#planselect').value;
+								<a style="display: none;" id="addtocart" href="" target="_blank"></a>
+								<button style="<?php echo 'background-color:' . (isset($colors[$colIndex]) ? $colors[$colIndex] : '#e9115e') ?>" onclick="function addToCartButton(){
+
+		let id = document.querySelector('#planselect<?php echo $colIndex ?>').value;
 			let url = `https://gomegamega.com/checkout/?add-to-cart=${id}&quantity=1`
 			const addtocart=document.querySelector('#addtocart')
 			addtocart.setAttribute('href',url);
@@ -181,8 +219,19 @@ $colors = array(
 			document.getElementById('addtocart').click();
 
 		};addToCartButton()" class="button button-primary">تهیه اشتراک</button>
-					</td>
+							</td>
+						<?php
+
+							}
+						?>
+
+					<?php
+
+						}
+					?>
 				</tr>
+
+
 
 
 
@@ -216,6 +265,7 @@ $colors = array(
 
 
 <?php
+// Ensure the user is logged in
 
 //}
 ?>
