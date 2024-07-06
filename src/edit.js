@@ -256,7 +256,8 @@ export default function Edit({ attributes, setAttributes }) {
 													tagName="p"
 													onChange={(value) => {
 														colsArr[index] = value;
-														setAttributes({ colsArr });
+														const newCols = [ ...colsArr ];
+														setAttributes({ colsArr:newCols });
 													}}
 													value={colsArr[index]}
 													placeholder={__(
@@ -289,7 +290,8 @@ export default function Edit({ attributes, setAttributes }) {
 																			rowsArr[index][j] = {};
 																		}
 																		rowsArr[index][j].text = value;
-																		setAttributes({ rowsArr });
+																		const newArr = [...rowsArr];
+																		setAttributes({ rowsArr:newArr });
 																	}}
 																	value={rowsArr[index][j].text}
 																	placeholder={__(
@@ -319,7 +321,9 @@ export default function Edit({ attributes, setAttributes }) {
 																				rowsArr[index][j] = {};
 																			}
 																			rowsArr[index][j].text = value;
-																			setAttributes({ rowsArr });
+
+																			const newArr = [...rowsArr];
+																			setAttributes({ rowsArr: newArr });
 																		}}
 																		value={rowsArr[index][j].text}
 																		placeholder={__(

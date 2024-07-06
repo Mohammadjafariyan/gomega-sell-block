@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       Gomega sell block 
+ * Plugin Name:       Gomega sell block
  * Plugin URI:        bulus.ir
- * Description:       Gomega sell block 
+ * Description:       Gomega sell block
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
@@ -29,3 +29,5 @@ function gomega_sell_block_gomega_sell_block_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'gomega_sell_block_gomega_sell_block_block_init' );
+
+
